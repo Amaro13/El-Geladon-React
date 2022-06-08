@@ -35,9 +35,6 @@ function PaletList() {
   const getPaletById = async (paletId) => {
     const response = await PaletService.getById(paletId);
     setPaletModal(response);
-    console.log(response);
-    console.log(paletId);
-    console.log(paletModal);
   };
 
   useEffect(() => {
@@ -56,7 +53,7 @@ function PaletList() {
           index={index}
           onRemove={(index) => removeItem(index)}
           onAdd={(index) => addItem(index)}
-          clickItem={(paletId) => getPaletById(palet)}
+          clickItem={() => getPaletById(palet._id)}
         />
       ))}
 

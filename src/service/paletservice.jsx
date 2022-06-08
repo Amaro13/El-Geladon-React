@@ -3,7 +3,7 @@ import { Api } from "../helpers/Api";
 const parseResponse = (response) => response.json();
 
 const transformPalet = (palet) => {
-  // console.log(palet._id);
+  // console.log(palet);
   const [flavor, filling] = palet.flavor.split(" with ");
 
   return {
