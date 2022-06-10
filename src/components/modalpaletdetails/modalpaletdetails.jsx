@@ -8,22 +8,18 @@ function PaletDetailsModal({ palet, closeModal }) {
         <div>
           <div className="PaletDetailsModal_title"> {palet.title} </div>
           <div className="PaletDetailsModal_price">
-            {" "}
-            R$ {Number(palet.price).toFixed(2)}{" "}
+            R$ {Number(palet.price).toFixed(2)}
           </div>
           <div className="PaletDetailsModal_description">
-            {" "}
-            <b>Flavor:</b> {palet.flavor}{" "}
+            <b>Flavor:</b> {palet.flavor}
           </div>
           {palet.filling && (
             <div className="PaletDetailsModal_description">
-              {" "}
-              <b>Filling:</b> {palet.filling}{" "}
+              <b>Filling:</b> {palet.filling}
             </div>
           )}
           <div className="PaletDetailsModal_description">
-            {" "}
-            <b>Description:</b> {palet.description}{" "}
+            <b>Description:</b> {palet.description}
           </div>
         </div>
         <img

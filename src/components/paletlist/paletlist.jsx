@@ -6,7 +6,7 @@ import PaletListItem from "../paletlistitem/paletlistitem.jsx";
 
 import PaletDetailsModal from "../modalpaletdetails/modalpaletdetails"; //testing modal
 
-function PaletList() {
+function PaletList({ paletCreated }) {
   const [palets, setPalets] = useState([]);
 
   const [SelectedPalet, setSelectedPalet] = useState({});
@@ -27,10 +27,18 @@ function PaletList() {
     setSelectedPalet({ ...SelectedPalet, ...palet });
   };
 
-  const getList = async () => {
+  const addPaletToList = (palet) => {
+    const list = [...palets, palet];
+    setPalets(list);
+  };
+  useEffect(() => {
+    if (paletCreated) addPaletToList(paletCreated);
+  }, [paletCreated]);
+
+  async function getList() {
     const response = await PaletService.getList();
     setPalets(response);
-  };
+  }
 
   const getPaletById = async (paletId) => {
     const response = await PaletService.getById(paletId);

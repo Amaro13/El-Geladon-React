@@ -31,8 +31,15 @@ export const PaletService = {
   getById: (id) =>
     fetch(Api.paletById(id), { method: "GET" }).then(parseTransformItem),
 
-  create: () =>
-    fetch(Api.createPalet(), { method: "POST" }).then(parseResponse),
+  create: (palet) =>
+    fetch(Api.createPalet(), {
+      method: "POST",
+      body: JSON.stringify(palet),
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(parseTransformItem),
   updtateById: (id) =>
     fetch(Api.updatePaletById(id), { method: "PUT" }).then(parseResponse),
   deleteById: (id) =>

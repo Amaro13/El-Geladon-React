@@ -1,87 +1,108 @@
 .Header {
-    max-width: 1110px;
-    margin: 0 auto 25px auto;
-    position: relative;
+  max-width: 1110px;
+  margin: 0 auto 25px auto;
+  position: relative;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin: 20px 0 35px 0;
+}
+
+.Logo {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 340px;
+  height: 45px;
+}
+
+.Logo_title {
+  position: absolute;
+  left: 55px;
+  font-family: "Exo";
+  font-weight: 700;
+  font-size: 2.5em;
+}
+
+.Logo_icon {
+  position: absolute;
+  left: -20px;
+  top: -15px;
+}
+
+.Bag {
+  position: relative;
+}
+
+.Bag_icon {
+  cursor: pointer;
+}
+
+.Bag_badge {
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  color: white;
+  font-size: 0.9em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  bottom: 0;
+  right: 0;
+}
+
+@media (max-width: 1220px) {
+  .Header {
+    max-width: 720px;
   }
-  
+}
+
+@media (max-width: 840px) {
+  .Header {
+    max-width: 320px;
+  }
   .row {
     display: flex;
-    width: 100%;
-    justify-content: space-between;
-    margin: 20px 0 35px 0;
+    flex-direction: column;
+    row-gap: 20px;
   }
-  
+}
+
+@media (max-width: 400px) {
+  .Header {
+    max-width: 250px;
+  }
+
+  .row {
+    column-gap: 20px;
+  }
+
   .Logo {
-    display: flex;
-    align-items: center;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.3);
-    width: 340px;
-    height: 45px;
+    width: 100%;
   }
-  
+
   .Logo_title {
-    position: absolute;
-    left: 55px;
-    font-family: "Exo";
-    font-weight: 700;
-    font-size: 2.5em;
+    font-size: 1.5em;
   }
-  
-  .Logo_icon {
-    position: absolute;
-    left: -20px;
-    top: -15px;
-  }
-  
-  .Bag {
-    position: relative;
-  }
-  
-  .Bag_icon {
-    cursor: pointer;
-  }
-  
-  .Bag_badge {
-    background-color: red;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    vertical-align: middle;
-    position: absolute;
-    color: white;
-    font-size: 0.9em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    bottom: 0;
-    right: 0;
-  }
-  
-  @media (max-width: 1220px) {
-    .Header {
-      max-width: 720px;
-    }
-  }
-  
-  @media (max-width: 840px) {
-    .Header {
-      max-width: 320px;
-    }
-  }
-  
-  @media (max-width: 400px) {
-    .Header {
-      max-width: 250px;
-    }
-  
-    .row {
-      column-gap: 20px;
-    }
-  
-    .Logo_title {
-      font-size: 1.5em;
-    }
-  }
-  
+}
+
+.Options {
+  display: flex;
+}
+
+.Palet {
+  background: none;
+  border: none;
+}
+
+.Palet_icon {
+  cursor: pointer;
+}

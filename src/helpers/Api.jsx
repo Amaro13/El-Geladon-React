@@ -3,7 +3,7 @@ const PaletContext = {
   paletEndpoint: () => `${Api.baseUrl}/palets`,
   paletList: () => `${PaletContext.paletEndpoint()}/all-palets`,
   paletById: (id) => `${PaletContext.paletEndpoint()}/palet/${id}`,
-  createPalet: () => `${PaletContext.paletEndpoint()}/create-palet`,
+  createPalet: () => `${PaletContext.paletEndpoint()}/create`,
   updatePaletById: (id) => `${PaletContext.paletEndpoint()}/update-palet/${id}`,
   deletePaletById: (id) => `${PaletContext.paletEndpoint()}/delete-palet/${id}`,
 };

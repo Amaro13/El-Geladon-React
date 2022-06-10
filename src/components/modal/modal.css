@@ -12,12 +12,12 @@
 }
 
 .Modal_close {
-  font-size: 2em;
+  font-size: 3em;
   position: absolute;
   width: 30px;
   height: 30px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   top: 20px;
   right: 20px;
