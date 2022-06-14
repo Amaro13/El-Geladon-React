@@ -40,8 +40,15 @@ export const PaletService = {
         "Content-Type": "application/json",
       },
     }).then(parseTransformItem),
-  updtateById: (id) =>
-    fetch(Api.updatePaletById(id), { method: "PUT" }).then(parseResponse),
+  updtateById: (id, palet) =>
+    fetch(Api.updatePaletById(id), {
+      method: "PUT",
+      body: JSON.stringify(palet),
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(parseResponse),
   deleteById: (id) =>
     fetch(Api.deletePaletById(id), { method: "DELETE" }).then(parseResponse),
 };

@@ -4,8 +4,8 @@ const PaletContext = {
   paletList: () => `${PaletContext.paletEndpoint()}/all-palets`,
   paletById: (id) => `${PaletContext.paletEndpoint()}/palet/${id}`,
   createPalet: () => `${PaletContext.paletEndpoint()}/create`,
-  updatePaletById: (id) => `${PaletContext.paletEndpoint()}/update-palet/${id}`,
-  deletePaletById: (id) => `${PaletContext.paletEndpoint()}/delete-palet/${id}`,
+  updatePaletById: (id) => `${PaletContext.paletEndpoint()}/update/${id}`,
+  deletePaletById: (id) => `${PaletContext.paletEndpoint()}/delete/${id}`,
 };
 
 //And here you are getting the json from the backend

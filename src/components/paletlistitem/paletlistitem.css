@@ -1,4 +1,5 @@
 .PaletListItem {
+  cursor: pointer;
   font-family: "Exo";
   background: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
@@ -7,7 +8,7 @@
   display: flex;
   justify-content: space-around;
   position: relative;
-  cursor: pointer;
+  transition: all 0.5s;
 }
 
 @media (max-width: 400px) {
@@ -17,10 +18,61 @@
   }
 }
 
+.PaletListItem-disable {
+  box-shadow: 0px 0px 7px rgba(148, 0, 211);
+}
+
+.PaletListItem-disable,
+.PaletListItem-disable .PaletListItem_price {
+  color: gray;
+}
+
+.PaletListItem-disable .PaletListItem_badge {
+  display: none;
+}
+
+.PaletListItem-disable img {
+  filter: grayscale(100%);
+}
+
+.PaletListItem-disable button:disabled {
+  background-color: gray;
+}
+
+.PaletListItem_tag {
+  background-color: darkviolet;
+  color: white;
+  position: absolute;
+  font-size: 0.6em;
+  border-radius: 5px;
+  padding: 5px;
+  top: -15px;
+  left: -10px;
+  letter-spacing: 1px;
+}
+
+.PaletListItem_badge {
+  background-color: greenyellow;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  color: black;
+  font-size: 0.8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  top: -9px;
+  left: -9px;
+}
+
 .PaletListItem > div {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  width: 100%;
 }
 
 .PaletListItem_title {
@@ -31,6 +83,7 @@
 
 .PaletListItem_description {
   font-size: 0.85em;
+  width: 100%;
 }
 
 .PaletListItem_price {
@@ -74,19 +127,10 @@
   margin-right: -60px;
 }
 
-.PaletListItem_badge {
-  background-color: greenyellow;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  vertical-align: middle;
-  position: absolute;
-  color: black;
-  font-size: 0.8em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  top: -9px;
-  left: -9px;
+.PaletListItem-delete {
+  box-shadow: 0px 0px 7px rgba(211, 0, 0);
+}
+
+.PaletListItem_tag-delete {
+  background-color: red;
 }

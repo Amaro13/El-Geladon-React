@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react";
 import Modal from "../modal/modal";
-import "./modaladdpalet.css";
+import "./modaladdeditpalet.css";
 import { PaletService } from "../../service/paletservice";
+import { ActionMode } from "../../constants";
 
 //the function runs as soon as the closeModal function runs wich closes the modal
-function AddPaletModal({ closeModal, onCreatePalet }) {
+function AddEditPaletModal({
+  mode,
+  closeModal,
+  paletToUpdate,
+  onCreatePalet,
+  onUpdatePalet,
+}) {
   const form = {
-    price: "",
-    flavor: "",
-    filling: "",
-    description: "",
-    photo: "",
+    price: paletToUpdate?.price ?? "",
+    flavor: paletToUpdate?.flavor ?? "",
+    recheio: paletToUpdate?.filling ?? "",
+    description: paletToUpdate?.description ?? "",
+    photo: paletToUpdate?.photo ?? "",
   };
   //the state starts with the form value
   const [state, setState] = useState(form);
@@ -21,13 +28,13 @@ function AddPaletModal({ closeModal, onCreatePalet }) {
   };
 
   const [canDisable, setCanDisable] = useState(true);
-
+  // It's not enabling automatically, must insert another digit.
   const canDisableSendButton = () => {
     const response = !Boolean(
       state.description.length &&
         state.photo.length &&
         state.flavor.length &&
-        state.price.length
+        String(state.price).length
     );
 
     setCanDisable(response);
@@ -35,7 +42,7 @@ function AddPaletModal({ closeModal, onCreatePalet }) {
 
   useEffect(() => canDisableSendButton);
 
-  const createPalet = async () => {
+  const handleSend = async () => {
     const renamePhotoPath = (fotoPath) => fotoPath.split("\\").pop();
 
     const { flavor, filling, description, price, photo } = state;
@@ -49,8 +56,30 @@ function AddPaletModal({ closeModal, onCreatePalet }) {
       photo: `assets/images/${renamePhotoPath(photo)}`,
     };
 
-    const response = await PaletService.create(palet);
-    onCreatePalet(response);
+    const serviceCall = {
+      [ActionMode.NORMAL]: () => PaletService.create(palet),
+      [ActionMode.UPDATE]: () =>
+        PaletService.updtateById(paletToUpdate?.id, palet),
+    };
+
+    const response = await serviceCall[mode]();
+
+    const actionResponse = {
+      [ActionMode.NORMAL]: () => onCreatePalet(response),
+      [ActionMode.UPDATE]: () => onUpdatePalet(response),
+    };
+
+    actionResponse[mode]();
+
+    const reset = {
+      price: "",
+      flavor: "",
+      filling: "",
+      description: "",
+      photo: "",
+    };
+
+    setState(reset);
     closeModal();
   };
 
@@ -59,7 +88,7 @@ function AddPaletModal({ closeModal, onCreatePalet }) {
     <Modal closeModal={closeModal}>
       <div className="AddPaletModal">
         <form autoComplete="off">
-          <h2> Add To List </h2>
+          <h2> {ActionMode.UPDATE === mode ? "Update" : "Add to"} Menu </h2>
           <div>
             <label className="AddPaletModal_text" htmlFor="price">
               Price:
@@ -79,7 +108,7 @@ function AddPaletModal({ closeModal, onCreatePalet }) {
             </label>
             <input
               id="flavor"
-              placeholder="Chocolate"
+              placeholder=""
               type="text"
               value={state.flavor}
               onChange={(e) => handleChange(e, "flavor")}
@@ -92,7 +121,7 @@ function AddPaletModal({ closeModal, onCreatePalet }) {
             </label>
             <input
               id="filling"
-              placeholder="Banana"
+              placeholder=""
               type="text"
               value={state.filling}
               onChange={(e) => handleChange(e, "filling")}
@@ -123,7 +152,7 @@ function AddPaletModal({ closeModal, onCreatePalet }) {
               id="photo"
               type="file"
               accept="image/png, image/gif, image/jpeg"
-              value={state.photo}
+              // value={state.photo}
               onChange={(e) => handleChange(e, "photo")}
               required
             />
@@ -132,9 +161,9 @@ function AddPaletModal({ closeModal, onCreatePalet }) {
             type="button"
             className="AddPaletModal_send"
             disabled={canDisable}
-            onClick={createPalet}
+            onClick={handleSend}
           >
-            Send
+            {ActionMode.NORMAL === mode ? "Send" : "Update"}
           </button>
         </form>
       </div>
@@ -142,4 +171,4 @@ function AddPaletModal({ closeModal, onCreatePalet }) {
   );
 }
 
-export default AddPaletModal;
+export default AddEditPaletModal;

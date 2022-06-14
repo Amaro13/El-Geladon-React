@@ -1,0 +1,39 @@
+.DeletePaletModal {
+  margin-top: -20px;
+}
+
+.DeletePaletModal > div {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.DeletePaletModal_photo {
+  position: absolute;
+  right: 0px;
+  bottom: 10px;
+  width: 80px;
+}
+
+.DeletePaletModal_confirm,
+.DeletePaletModal_cancel {
+  border: none;
+  border-radius: 5px;
+  font-family: "Exo", sans-serif;
+  padding: 5px;
+  max-width: 280px;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 48%;
+  color: white;
+}
+
+.DeletePaletModal_confirm {
+  background-color: darkviolet;
+}
+
+.DeletePaletModal_cancel {
+  background-color: red;
+}
