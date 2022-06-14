@@ -46,9 +46,12 @@ function AddEditPaletModal({
     const renamePhotoPath = (fotoPath) => fotoPath.split("\\").pop();
 
     const { flavor, filling, description, price, photo } = state;
-
-    const title = flavor + (filling && " with " + filling);
-
+    let title = "";
+    if (filling == undefined) {
+      title = flavor;
+    } else {
+      title = flavor + (filling && " with " + filling);
+    }
     const palet = {
       flavor: title,
       description,
